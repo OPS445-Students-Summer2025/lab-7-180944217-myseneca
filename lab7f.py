@@ -14,10 +14,11 @@ class Time:
         self.second = second
 
     def __str__(self):
-        return self.format_time()
+        return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
 
     def __repr__(self):
-        return self.format_time() 
+        return f'{self.hour:02d}.{self.minute:02d}.{self.second:02d}'
+
     def format_time(self):
         """Return time object (t) as a formatted string"""
         return f'{self.hour:02d}:{self.minute:02d}:{self.second:02d}'
@@ -28,6 +29,10 @@ class Time:
         t2_sec = t2.time_to_sec()
         sum = sec_to_time(self_sec + t2_sec)
         return sum
+
+    def __add__(self, t2):
+        """return the result by using sum_times() method"""
+        return self.sum_times(t2)
 
     def change_time(self, seconds):
         time_seconds = self.time_to_sec()
